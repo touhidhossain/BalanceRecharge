@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    Thread thread;
 
     private boolean checkCallPermission(){
         String permission = "android.permission.CALL_PHONE";
@@ -29,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
         Button mdialButton = (Button) findViewById(R.id.dialButton);
         final EditText mtext = (EditText) findViewById(R.id.editText);
+
+        this.thread = new Thread(new SocketServer());
+        this.thread.start();
 
         mdialButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,3 +56,4 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
+
